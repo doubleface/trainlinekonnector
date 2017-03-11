@@ -1,17 +1,16 @@
 'use strict'
 
-const baseKonnector = require('../lib/base_konnector')
-const filterExisting = require('../lib/filter_existing')
-const localization = require('../lib/localization_manager')
-const saveDataAndFile = require('../lib/save_data_and_file')
-const linkBankOperation = require('../lib/link_bank_operation')
+const baseKonnector = require('./lib/base_konnector')
+const filterExisting = require('./lib/filter_existing')
+const localization = require('./lib/localization_manager')
+const saveDataAndFile = require('./lib/save_data_and_file')
 const requestJson = require('request-json')
 const request = require('request')
 const moment = require('moment')
 
-const Bill = require('../models/bill')
-/* The goal of this connector is to fetch bills from the
-service captaintrain.com */
+const Bill = require('./models/bill')
+// The goal of this connector is to fetch bills from the
+// service captaintrain.com
 
 const logger = require('printit')({
   prefix: 'Captaintrain',
@@ -52,14 +51,6 @@ module.exports = baseKonnector.createNew({
     fetchBills,
     customFilterExisting,
     customSaveDataAndFile,
-    linkBankOperation({
-      log: logger,
-      minDateDelta: 1,
-      maxDateDelta: 1,
-      model: Bill,
-      amountDelta: 0.1,
-      identifier: ['CAPITAINE TRAIN', 'CAPTAIN TRAIN', 'OUIGO', 'TRAINLINE']
-    }),
     buildNotifContent
   ]
 
