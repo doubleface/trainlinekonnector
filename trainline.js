@@ -49,8 +49,9 @@ module.exports = baseKonnector.createNew({
   fetchOperations: [
     login,
     fetchBills,
-    customFilterExisting,
-    customSaveDataAndFile,
+    displayBills,
+    //customFilterExisting,
+    //customSaveDataAndFile,
     buildNotifContent
   ]
 
@@ -337,6 +338,11 @@ function fetchBills (requiredFields, entries, data, next) {
 
   entries.fetched = filteredBills
   next()
+}
+
+function displayBills (requiredFields, entries, data, next) {
+  console.log('Here is the list of bills you fetched from trainline')
+  console.log(entries)
 }
 
 function customFilterExisting (requiredFields, entries, data, next) {
